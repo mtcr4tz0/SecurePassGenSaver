@@ -139,3 +139,15 @@ It demonstrates:
 ## Disclaimer
 
 SecurePassGenSaver is an educational and portfolio project. For critical real-world accounts, a trusted professional password manager is still recommended.
+# SecurePassGenSaver Version Downloads
+
+| Version | Release Name | Recommended Download | Source Code ZIP | Main Change | Status |
+|---|---|---|---|---|---|
+| v1.5.0 | PIN-Based Encryption Release | `SecurePassGenSaver-1.5.0-Setup.exe` | `SecurePassGenSaver_1.5.0_PinBasedEncryption_Source.zip` | PIN is now used for file encryption with PBKDF2-SHA256 and AES-GCM | **Recommended / Current** |
+| v1.4.2 | PIN Fix Release | `SecurePassGenSaver-1.4.2-Setup.exe` | `SecurePassGenSaver_1.4.2_PinFix_Source.zip` | Fixed Save PIN behavior so saving a PIN enables it properly | Old |
+| v1.4.1 | Final UI Polish | `SecurePassGenSaver-1.4.1-Setup.exe` | `SecurePassGenSaver_1.4.1_FinalUIPolish_Source.zip` | Improved the Information/About tab layout and readability | Old |
+| v1.4.0 | Portable OpenRGB-Style Release | `SecurePassGenSaver-1.4.0-Setup.exe` | `SecurePassGenSaver_1.4.0_Portable_OpenRGBStyle_Source.zip` | Added portable self-contained EXE and OpenRGB/Rufus-style UI polish | Old |
+| v1.3.0 | Encrypted Storage Release | `SecurePassGenSaver-1.3.0-Setup.exe` | `SecurePassGenSaver_1.3.0_EncryptedStorage_ThemePolish_Source.zip` | Added Windows DPAPI encrypted `.spgs` storage | Old |
+| v1.2.0 | Installer and Icon Release | `SecurePassGenSaver-1.2.0-Setup.exe` | `SecurePassGenSaver_Final_1.2.0_IconShortcutReady_Source.zip` | Added installer, icon, desktop shortcut, and Start Menu shortcut support | Old |
+| v1.1.0 | Windows UI Release | No setup installer | `SecurePassGenSaver_DarkUI_Source.zip` | First Windows Forms GUI version | Archive |
+| v1.0.0 | Console Prototype | No setup installer | `SecurePassGen_Source.zip` | First console password generator prototype | Archive |
