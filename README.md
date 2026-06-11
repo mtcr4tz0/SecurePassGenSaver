@@ -1,193 +1,141 @@
 # SecurePassGenSaver
 
-SecurePassGenSaver is an open-source C# Windows password generator with a compact dark utility-style interface. It generates passwords locally using `.NET RandomNumberGenerator`, supports custom password options, estimates entropy, saves entries as Markdown files, and includes installer support.
+SecurePassGenSaver is an open-source C# Windows password generator with a compact utility-style interface. It can generate strong passwords locally, save entries securely, and protect saved files with PIN-based encryption.
 
-## Features
+## Download and Install
 
-* Local password generation
-* Uses `.NET RandomNumberGenerator`
-* Dark Windows Forms UI
-* Custom themed tab bar
-* Floating password length indicator
-* Password length selection from 8 to 32 characters
-* Options for lowercase letters, uppercase letters, numbers, and special characters
-* Option to avoid ambiguous characters such as `I`, `l`, `1`, `O`, and `0`
-* Entropy and strength estimation
-* Save passwords as Markdown files
-* Choose a save folder or USB drive
-* View saved password entries
-* Copy, edit, and delete saved entries
-* Optional 4-digit app PIN with hint
-* Dark, light, and system theme options
-* Accessibility text-to-speech option
-* Installer support with desktop and Start Menu shortcuts
+For normal users, the easiest way to install SecurePassGenSaver is through the **GitHub Releases** page.
 
-## Important Security Note
+### Recommended Installation
 
-Saved password files are stored as readable Markdown plain text.
-
-The optional 4-digit PIN only protects access to the app. It does **not** encrypt saved password files.
-
-For real passwords and important accounts, use a trusted password manager and enable multi-factor authentication when possible.
-
-## Requirements
-
-To build or run the project from source, you need:
-
-* Windows 10 or Windows 11
-* .NET 8 SDK
-* Visual Studio 2022 or Visual Studio Code
-
-To build the installer, you also need:
-
-* Inno Setup
-
-## How to Run from Source
-
-Clone or download this repository.
-
-Open PowerShell or Terminal inside the project folder, where `SecurePassGenSaver.csproj` is located.
-
-Run:
-
-```powershell
-dotnet run
-```
-
-The app should open normally.
-
-## How to Build the EXE
-
-Open PowerShell inside the project folder and run:
-
-```powershell
-dotnet publish -c Release -r win-x64 --self-contained false /p:PublishSingleFile=true
-```
-
-After building, the executable will be located in:
+1. Open the repository on GitHub.
+2. Go to the **Releases** section.
+3. Download the latest setup file:
 
 ```text
-bin\Release\net8.0-windows\win-x64\publish\
+SecurePassGenSaver-1.5.0-Setup.exe
 ```
 
-The main file will be:
+4. Run the setup file.
+5. Follow the installer steps.
+6. After installation, open SecurePassGenSaver from:
+
+   * Desktop shortcut
+   * Start Menu
+   * Windows Search
+
+The installer places the app in:
+
+```text
+C:\Program Files\SecurePassGenSaver
+```
+
+It also supports desktop shortcuts, Start Menu shortcuts, Windows Search, and manual taskbar pinning.
+
+## Portable Version
+
+A portable EXE may also be included in the release assets:
 
 ```text
 SecurePassGenSaver.exe
 ```
 
-## How to Build the Installer
+This version can be run without using the installer. However, the setup installer is recommended for most users because it creates shortcuts and installs the app properly.
 
-This project includes installer files.
-
-First, build the published app by running:
-
-```powershell
-.\Scripts\build-publish.ps1
-```
-
-Then open this file in Inno Setup:
-
-```text
-Installer\SecurePassGenSaver.iss
-```
-
-Press:
-
-```text
-Compile
-```
-
-The final installer will be created in:
-
-```text
-InstallerOutput\
-```
-
-The installer will:
-
-* Install SecurePassGenSaver into `C:\Program Files\SecurePassGenSaver`
-* Create a desktop shortcut
-* Create a Start Menu shortcut
-* Make the app searchable from Windows Search
-* Add an uninstall option in Windows settings
-
-## How to Use
-
-1. Open SecurePassGenSaver.
-2. Go to the Generate tab.
-3. Enter a save file name and username if needed.
-4. Choose password length.
-5. Select character options.
-6. Click Generate.
-7. Copy or save the password.
-8. Saved entries can be managed from the Password List tab.
-9. Saved Markdown files can be viewed from the Saved Files tab.
-
-## Version History
-
-### 1.0.0 — Console Prototype
-
-Initial C# console password generator.
-
-Features:
+## Main Features
 
 * Local password generation
-* Character type options
-* Password length selection
+* Uses `.NET RandomNumberGenerator`
+* Password length and character customization
 * Entropy estimation
-
-### 1.1.0 — Windows UI Version
-
-Added a Windows Forms graphical interface.
-
-Features:
-
-* Dark UI
-* Password generation tab
-* Password list tab
-* Saved files tab
-* Options and settings
-* Markdown saving
+* Saved password list
+* Copy, edit, and delete saved entries
+* Custom save folder support
 * Optional app PIN
-* Text-to-speech option
+* PIN-based encrypted `.spgs` files
+* Dark and light theme support
+* Custom application icon
+* Windows installer support
 
-### 1.2.0 — Installer-Ready Release
+## Security
 
-Improved the app for release and installation.
+When a PIN is enabled, saved `.spgs` files use PIN-based encryption.
 
-Features:
+SecurePassGenSaver 1.5.0 uses:
 
-* Installer support
-* Program Files installation
-* Desktop shortcut
-* Start Menu shortcut
-* Windows Search support
-* Custom themed tab bar
-* Floating password length indicator
-* Improved dark theme consistency
+* PBKDF2-SHA256
+* 250,000 iterations
+* AES-GCM encryption
+* Random salt per file
+* Random nonce per file
+
+This means deleting the app settings file does not unlock PIN-encrypted saved passwords.
+
+Important: if you forget the PIN, PIN-encrypted saved passwords cannot be recovered. That is the tradeoff of real encryption.
+
+## Build from Source
+
+This repository also includes the open-source project files for developers who want to inspect, modify, or build the app themselves.
+
+### Requirements
+
+To build from source, install:
+
+* Windows 10 or Windows 11
+* .NET 8 SDK or newer
+* Inno Setup
+
+### Build the App and Installer
+
+After cloning or downloading the source code, open the project folder and run:
+
+```text
+BUILD_SETUP.bat
+```
+
+This will build the app and create the installer.
+
+The portable EXE will be created here:
+
+```text
+Publish\SecurePassGenSaver.exe
+```
+
+The setup installer will be created here:
+
+```text
+InstallerOutput\SecurePassGenSaver-1.5.0-Setup.exe
+```
+
+## Inno Setup
+
+Inno Setup is required only if you want to build the installer from the source code.
+
+You do not need Inno Setup if you only want to install the app from GitHub Releases.
+
+Normal users should download:
+
+```text
+SecurePassGenSaver-1.5.0-Setup.exe
+```
+
+Developers who want to build the setup file themselves need Inno Setup installed.
 
 ## Project Purpose
 
-This project was created as a beginner cybersecurity and programming portfolio project.
+SecurePassGenSaver was created as a cybersecurity and programming portfolio project.
 
 It demonstrates:
 
 * C# programming
 * Windows Forms UI design
 * Password generation
-* Random number generation
-* Entropy estimation
-* Local file storage
-* Basic privacy awareness
-* Installer setup for Windows apps
+* Local encrypted storage
+* PIN-based encryption
+* Windows installer creation
+* GitHub release management
+* Open-source project structure
 
 ## Disclaimer
 
-This project is for educational and portfolio purposes.
-
-It is not a replacement for a professional password manager.
-
-## License
-
-This project is licensed under the MIT License.
+SecurePassGenSaver is an educational and portfolio project. For critical real-world accounts, a trusted professional password manager is still recommended.
